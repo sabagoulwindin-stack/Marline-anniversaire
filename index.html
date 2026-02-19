@@ -1,69 +1,70 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Accès sécurisé</title>
-
-<style>
-
-body{
-background:black;
-color:white;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-font-family:Arial;
-flex-direction:column;
-}
-
-input{
-padding:10px;
-font-size:20px;
-text-align:center;
-}
-
-button{
-padding:10px 20px;
-margin-top:10px;
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accès sécurisé</title>
+    <style>
+        body {
+            background: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            flex-direction: column;
+            margin: 0;
+        }
+        h1 { font-family: 'Times New Roman', serif; margin-bottom: 20px; }
+        input {
+            padding: 12px;
+            font-size: 18px;
+            text-align: center;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+        }
+        button {
+            padding: 10px 25px;
+            margin-top: 20px;
+            background: #ff4b7d;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        button:hover { background: #ff2e6a; transform: scale(1.05); }
+    </style>
 </head>
-
 <body>
 
-<h1>Zone protégée ❤️</h1>
+    <h1>Zone protégée ❤️</h1>
+    <input type="password" id="pass" placeholder="Mot de passe">
+    <button onclick="check()">Entrer</button>
 
-<input type="password" id="pass" placeholder="Mot de passe">
+    <script>
+        function check() {
+            // .toLowerCase() transforme tout en minuscules
+            // .trim() enlève les espaces avant ou après par erreur
+            let password = document.getElementById("pass").value.toLowerCase().trim();
 
-<button onclick="check()">Entrer</button>
+            if (password === "marline") {
+                // ATTENTION : Vérifie bien que ton fichier s'appelle lettre.html sur GitHub
+                window.location.href = "lettre.html";
+            } else {
+                alert("Mot de passe incorrect, mon cœur.");
+            }
+        }
 
-<script>
-
-
-function check(){
-
-let password = document.getElementById("pass").value.toLowerCase();
-
-if(password === "marline"){
-
-window.location.href="accueil.html";
-
-}else{
-
-alert("Mot de passe incorrect");
-
-}
-
-}
-
-</script>
-
+        // Permet de valider en appuyant sur la touche "Entrée"
+        document.getElementById("pass").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                check();
+            }
+        });
+    </script>
 </body>
-
 </html>
-
-
