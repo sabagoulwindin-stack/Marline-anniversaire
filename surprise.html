@@ -119,20 +119,36 @@ Et toutes les autres vies si elles existaient.
         </button>
     </div>
 
-    <audio id="music2" loop>
+    <audio id="music2" autoplay loop>
         <source src="music2.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        // --- LOGIQUE MUSIQUE MOBILE ---
-        const audio = document.getElementById("music2");
-        function unlockAudio() {
+        // --- LOGIQUE MUSIQUE INTELLIGENTE ---
+const audio = document.getElementById("music2");
+
+// 1. On essaie de lancer la musique immédiatement
+const promise = audio.play();
+
+if (promise !== undefined) {
+    promise.then(() => {
+        // L'autoplay a fonctionné (Autorisation héritée de la page précédente)
+        console.log("Autoplay réussi !");
+    }).catch(error => {
+        // L'autoplay a été bloqué, on prépare le déblocage manuel
+        console.log("Autoplay bloqué, attente d'un clic...");
+        
+        const unlockAudio = () => {
             audio.play();
+            // On nettoie les écouteurs pour ne pas surcharger
             document.removeEventListener('click', unlockAudio);
             document.removeEventListener('touchstart', unlockAudio);
-        }
+        };
+
         document.addEventListener('click', unlockAudio);
         document.addEventListener('touchstart', unlockAudio);
+    });
+}
 
         // --- LOGIQUE FEUX D'ARTIFICE ---
         const canvas = document.getElementById("fireworks");
@@ -192,4 +208,5 @@ Et toutes les autres vies si elles existaient.
     </script>
 </body>
 </html>
+
 
