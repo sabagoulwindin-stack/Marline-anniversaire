@@ -1,259 +1,194 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300&display=swap" rel="stylesheet">
 
-<meta charset="UTF-8">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: black;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            /* Changements pour le scroll mobile */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            overflow-y: auto; 
+        }
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        canvas {
+            position: fixed; /* Fixé en arrière-plan */
+            top: 0;
+            left: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
 
-<title>Surprise ❤️</title>
+        .container {
+            position: relative; /* Permet de défiler normalement */
+            z-index: 2;
+            padding: 40px 20px;
+            opacity: 0;
+            animation: appear 4s forwards;
+            animation-delay: 1s;
+            max-width: 800px;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300&display=swap" rel="stylesheet">
+        @keyframes appear {
+            to { opacity: 1; }
+        }
 
-<style>
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(40px, 10vw, 70px); /* Taille fluide */
+            margin-bottom: 20px;
+            color: #ff4b7d;
+        }
 
-body{
+        p {
+            font-size: clamp(16px, 5vw, 22px);
+            line-height: 1.8;
+            margin: 0 auto;
+            white-space: pre-wrap; /* Respecte les sauts de ligne */
+        }
 
-margin:0;
-padding:0;
-background:black;
-overflow:hidden;
-color:white;
-font-family:'Poppins', sans-serif;
-text-align:center;
+        .heart {
+            font-size: 60px;
+            margin: 20px 0;
+            animation: beat 1s infinite;
+        }
 
-}
+        @keyframes beat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
 
-canvas{
+        button {
+            margin-top: 40px;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            background: #ff4b7d;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-position:absolute;
-top:0;
-left:0;
-
-}
-
-.container{
-
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-z-index:2;
-opacity:0;
-animation: appear 4s forwards;
-animation-delay:2s;
-
-}
-
-@keyframes appear{
-
-to{
-
-opacity:1;
-
-}
-
-}
-
-h1{
-
-font-family:'Great Vibes', cursive;
-font-size:70px;
-margin-bottom:20px;
-
-}
-
-p{
-
-font-size:22px;
-line-height:1.8;
-max-width:800px;
-
-}
-
-.heart{
-
-font-size:80px;
-animation: beat 1s infinite;
-
-}
-
-@keyframes beat{
-
-0%{transform:scale(1);}
-50%{transform:scale(1.2);}
-100%{transform:scale(1);}
-
-}
-
-button{
-
-margin-top:40px;
-padding:15px 40px;
-border:none;
-border-radius:30px;
-background:#ff4b7d;
-color:white;
-font-size:18px;
-cursor:pointer;
-
-}
-
-button:hover{
-
-background:#ff2e6a;
-
-}
-
-</style>
-
+        button:hover {
+            background: #ff2e6a;
+            transform: scale(1.05);
+        }
+    </style>
 </head>
-
 <body>
 
+    <canvas id="fireworks"></canvas>
 
-<canvas id="fireworks"></canvas>
-
-
-<div class="container">
-
-<h1>Joyeux anniversaire Marline</h1>
-
-<div class="heart">❤️</div>
-
-<p>
-
+    <div class="container">
+        <h1>Joyeux anniversaire Marline</h1>
+        <div class="heart">❤️</div>
+        <p>
 Ce site se termine…
-
 Mais mon amour pour toi ne se terminera jamais.
 
-
 Tu es mon passé,
-
 mon présent,
-
 et tout mon futur.
 
-
 Peu importe où la vie nous mènera,
-
 je veux tout construire avec toi.
 
-
 Ce n’est pas juste une surprise.
-
 C’est une promesse.
 
-
 Je t’aimerai toute ma vie.
+Et toutes les autres vies si elles existaient.
+        </p>
 
-Et toutes les autres vies si elles existaient. 
+        <button onclick="location.href='histoire.html'">
+            Nos meilleurs souvenirs ❤️
+        </button>
+    </div>
 
-</p>
+    <audio id="music2" loop>
+        <source src="music2.mp3" type="audio/mpeg">
+    </audio>
 
+    <script>
+        // --- LOGIQUE MUSIQUE MOBILE ---
+        const audio = document.getElementById("music2");
+        function unlockAudio() {
+            audio.play();
+            document.removeEventListener('click', unlockAudio);
+            document.removeEventListener('touchstart', unlockAudio);
+        }
+        document.addEventListener('click', unlockAudio);
+        document.addEventListener('touchstart', unlockAudio);
 
-<button onclick="location.href='ourgalerie.html'">
+        // --- LOGIQUE FEUX D'ARTIFICE ---
+        const canvas = document.getElementById("fireworks");
+        const ctx = canvas.getContext("2d");
 
-Nos meilleurs souvenirs ❤️
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
-</button>
+        let particles = [];
 
+        function createFirework() {
+            // Point d'origine aléatoire pour plus de réalisme
+            const originX = Math.random() * canvas.width;
+            const originY = Math.random() * canvas.height;
+            
+            for (let i = 0; i < 60; i++) {
+                particles.push({
+                    x: originX,
+                    y: originY,
+                    vx: (Math.random() - 0.5) * 8,
+                    vy: (Math.random() - 0.5) * 8,
+                    alpha: 1,
+                    color: `hsl(${Math.random() * 360}, 100%, 70%)`
+                });
+            }
+        }
 
-</div>
-<audio autoplay loop>
+        function animate() {
+            ctx.fillStyle = "rgba(0,0,0,0.15)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-<source src="music2.mp3">
+            particles.forEach((p, index) => {
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += 0.05; // Un peu de gravité
+                p.alpha -= 0.01;
 
-</audio>
+                ctx.fillStyle = p.color.replace(')', `, ${p.alpha})`).replace('hsl', 'hsla');
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+                ctx.fill();
 
+                if (p.alpha <= 0) {
+                    particles.splice(index, 1);
+                }
+            });
 
+            requestAnimationFrame(animate);
+        }
 
-<script>
-
-
-const canvas = document.getElementById("fireworks");
-
-const ctx = canvas.getContext("2d");
-
-canvas.width = window.innerWidth;
-
-canvas.height = window.innerHeight;
-
-
-let particles = [];
-
-
-function createFirework(){
-
-for(let i=0;i<100;i++){
-
-particles.push({
-
-x:canvas.width/2,
-
-y:canvas.height/2,
-
-vx:(Math.random()-0.5)*6,
-
-vy:(Math.random()-0.5)*6,
-
-alpha:1
-
-});
-
-}
-
-}
-
-
-function animate(){
-
-ctx.fillStyle="rgba(0,0,0,0.2)";
-
-ctx.fillRect(0,0,canvas.width,canvas.height);
-
-
-particles.forEach((p,index)=>{
-
-p.x+=p.vx;
-
-p.y+=p.vy;
-
-p.alpha-=0.01;
-
-
-ctx.fillStyle="rgba(255,105,180,"+p.alpha+")";
-
-ctx.beginPath();
-
-ctx.arc(p.x,p.y,3,0,Math.PI*2);
-
-ctx.fill();
-
-
-if(p.alpha<=0){
-
-particles.splice(index,1);
-
-}
-
-});
-
-
-requestAnimationFrame(animate);
-
-}
-
-
-setInterval(createFirework,1500);
-
-animate();
-
-
-</script>
-
-
+        setInterval(createFirework, 1000);
+        animate();
+    </script>
 </body>
-
 </html>
