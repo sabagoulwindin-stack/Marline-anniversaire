@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lettre pour Marline ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+
+margin:0;
+padding:0;
+background:black;
+color:white;
+font-family:'Poppins', sans-serif;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+
+}
+
+#cinema{
+
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+animation: fadeOut 4s ease forwards;
+animation-delay:3s;
+
+}
+
+#cinema h1{
+
+font-family:'Great Vibes', cursive;
+font-size:50px;
+color:white;
+
+}
+
+@keyframes fadeOut{
+
+to{
+
+opacity:0;
+visibility:hidden;
+
+}
+
+}
+
+#content{
+
+max-width:800px;
+padding:40px;
+opacity:0;
+animation: appear 3s ease forwards;
+animation-delay:7s;
+line-height:1.8;
+font-size:20px;
+
+}
+
+@keyframes appear{
+
+to{
+
+opacity:1;
+
+}
+
+}
+
+.cursor{
+
+border-right:2px solid white;
+animation: blink 1s infinite;
+
+}
+
+@keyframes blink{
+
+50%{
+
+border-color:transparent;
+
+}
+
+}
+
+button{
+display: none;
+margin-top:40px;
+padding:15px 30px;
+border:none;
+border-radius:30px;
+background:#ff4b7d;
+color:white;
+font-size:18px;
+cursor:pointer;
+
+}
+
+button:hover{
+
+background:#ff2e6a;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<div id="cinema">
+
+<h1>Chargement du souvenir le plus précieux...</h1>
+
+</div>
+
+
+<div id="content">
+
+<div id="text"></div>
+
+<audio id="music" autoplay loop>
+
+<source src="music1.mp3" type="audio/mpeg">
+
+</audio>
+
+<br>
+
+<button id="btn-continuer" onclick="location.href='histoire.html'">
+
+Continuer ❤️
+
+</button>
+
+</div>
+
+
+
+<script>
+
+const message = `
+
+Mon coeur
+
+De fois l'on ne sait point où cheminer
+
+L'on arrive pas non plus a déterminer quel choix est le mieux.
+
+Mais depuis que je t'ai rencontré princesse, tout semble facile
+
+Le 2 juillet n’est pas juste une date.
+
+C’est le jour où ma vie a changé de version.
+
+Le jour où tout a commencé à avoir un sens.
+
+
+Avant toi, j’avançais…
+
+Mais avec toi, j’ai commencé à vivre.
+
+
+Tu es entrée dans ma vie sans bruit,
+
+mais tu es devenue tout mon univers.
+
+
+Dans mes moments les plus sombres,
+
+tu as été ma lumière.
+
+Dans mes moments de doute,
+
+tu as été ma force.
+
+
+Tu m’as soutenu…
+
+Tu m’as relevé…
+
+Tu m’as aidé à devenir un homme meilleur.
+
+
+Tu es bien plus qu’un amour.
+
+Tu es ma paix.
+
+Tu es ma motivation.
+
+Tu es mon avenir.
+
+Tu es la plus belle chose que la vie m’ait offerte.
+
+
+Et aujourd’hui…
+
+je veux simplement te dire…
+
+
+Joyeux anniversaire, mon amour.
+
+Aujourd'hui je veux te céléber comme tu le merites,
+
+Aujourd'hui je veux que tu saches a quel point ma vie est merveilleuse grace a toi
+
+Je t’aime.
+
+Infiniment Princesse
+
+
+
+`;
+
+let i = 0;
+
+const speed = 40;
+
+function typeWriter(){
+
+if(i < message.length){
+
+document.getElementById("text").innerHTML += message.charAt(i);
+
+i++;
+
+setTimeout(typeWriter, speed);
+
+}else {
+    
+        document.getElementById("btn-continuer").style.display = "inline-block";
+    }
+
+}
+
+setTimeout(typeWriter,7000);
+
+
+
+</script>
+<script>
+
+if(localStorage.getItem("playMusic") === "yes"){
+
+document.getElementById("music").play();
+
+}
+
+</script>
+
+
+</body>
+
+</html>

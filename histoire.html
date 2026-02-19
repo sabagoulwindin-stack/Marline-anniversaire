@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Notre histoire ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+
+margin:0;
+padding:0;
+font-family:'Poppins', sans-serif;
+background: linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+color:white;
+overflow-x:hidden;
+
+}
+
+.container{
+
+max-width:900px;
+margin:auto;
+padding:50px 20px;
+text-align:center;
+
+}
+
+h1{
+
+font-family:'Great Vibes', cursive;
+font-size:60px;
+margin-bottom:10px;
+
+}
+
+.counter{
+
+font-size:25px;
+margin-bottom:40px;
+color:#ff7eb3;
+
+}
+
+.timeline{
+
+text-align:left;
+margin-top:40px;
+
+}
+
+.event{
+
+margin-bottom:40px;
+padding-left:20px;
+border-left:2px solid #ff7eb3;
+
+}
+
+.event h2{
+
+color:#ff7eb3;
+
+}
+
+.event p{
+
+line-height:1.8;
+
+}
+
+.photos{
+
+margin-top:50px;
+
+}
+
+.photos img{
+
+width:250px;
+border-radius:15px;
+margin:10px;
+transition:0.5s;
+
+}
+
+.photos img:hover{
+
+transform:scale(1.1);
+box-shadow:0 0 20px #ff7eb3;
+
+}
+
+button{
+
+margin-top:50px;
+padding:15px 40px;
+border:none;
+border-radius:30px;
+background:#ff4b7d;
+color:white;
+font-size:18px;
+cursor:pointer;
+
+}
+
+button:hover{
+
+background:#ff2e6a;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+
+<h1>Notre histoire</h1>
+
+
+<div class="counter" id="counter">
+
+Chargement...
+
+</div>
+
+
+
+<div class="timeline">
+
+
+<div class="event">
+
+<h2>Le 2 juillet — Le commencement de ma plus belle histoire de vie</h2>
+
+<p>
+
+Ce jour-là, sans le savoir, ma vie venait de trouver sa direction.
+
+Ce n’était pas juste un moment en haut des escaliers.
+
+C’était le début de mon plus beau voyage, t'imagines tellement pas.
+
+</p>
+
+</div>
+
+
+<div class="event">
+
+<h2>La distance — Notre plus grande épreuve princesse</h2>
+
+<p>
+
+La distance a essayé de nous tester.
+
+Mais elle a échoué.
+
+Parce que même séparé par des milliers de kilomètres mon amour,
+
+mon cœur n’a jamais cessé de battre pour toi.
+
+</p>
+
+</div>
+
+
+<div class="event">
+
+<h2>Les moments difficiles — Notre force</h2>
+
+<p>
+
+Il y a eu des moments sombres.
+
+Des doutes.
+
+Des peurs.
+
+Des ruptures.
+
+Mais tu es toujours restée.
+
+Tu m’as soutenu.
+
+Tu m’as aidé à grandir.
+
+Et c’est là que j’ai compris…
+
+que tu es la femme de ma vie.
+
+Et je ferai toujours tout pour te rendre fière.
+
+</p>
+
+</div>
+
+
+
+<div class="event">
+
+<h2>Aujourd’hui — Ma certitude</h2>
+
+<p>
+
+Aujourd’hui, je ne vois plus juste mon présent quand je te regarde.
+
+Je vois mon futur.
+
+Je vois ma femme.
+
+Je vois toute ma vie avec toi.
+
+Et j'ai tellement hâte d'etre à tes cotés ma vie.
+
+</p>
+
+</div>
+
+
+</div>
+
+
+
+<div class="photos">
+
+<h2>Ma princesse rayonne tellement</h2>
+
+<img src="photo1.jpeg">
+
+<img src="photo2.jpeg">
+
+<img src="photo3.jpeg">
+
+</div>
+
+
+
+<button onclick="location.href='surprise.html'">
+
+Continuer vers la surprise ❤️
+
+</button>
+
+
+</div>
+
+
+
+<script>
+
+
+const startDate = new Date("July 2, 2023 20:53:00").getTime();
+
+
+function updateCounter(){
+
+const now = new Date().getTime();
+
+const diff = now - startDate;
+
+
+const days = Math.floor(diff / (1000*60*60*24));
+
+const hours = Math.floor((diff % (1000*60*60*24))/(1000*60*60));
+
+const minutes = Math.floor((diff % (1000*60*60))/(1000*60));
+
+
+document.getElementById("counter").innerHTML =
+
+"Notre histoire à débuté depuis maintenant <br><b>" +
+
+days + " jours " +
+
+hours + " heures " +
+
+minutes + " minutes</b> ❤️";
+
+}
+
+
+setInterval(updateCounter,1000);
+
+updateCounter();
+
+
+</script>
+
+
+</body>
+
+</html>

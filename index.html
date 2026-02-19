@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pour Ma vie❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+
+margin:0;
+
+padding:0;
+
+height:100vh;
+
+background: linear-gradient(135deg, #ff4b7d, #ff758c, #ff7eb3);
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-family: 'Poppins', sans-serif;
+
+color:white;
+
+overflow:hidden;
+
+}
+
+.container{
+
+text-align:center;
+
+animation: fadeIn 3s ease;
+
+max-width:800px;
+
+padding:20px;
+
+}
+
+h1{
+
+font-family: 'Great Vibes', cursive;
+
+font-size:70px;
+
+margin-bottom:20px;
+
+animation: glow 2s infinite alternate;
+
+}
+
+p{
+
+font-size:20px;
+
+line-height:1.8;
+
+margin-bottom:40px;
+
+}
+
+.btn{
+
+padding:15px 40px;
+
+font-size:18px;
+
+border:none;
+
+border-radius:50px;
+
+background:white;
+
+color:#ff4b7d;
+
+cursor:pointer;
+
+text-decoration:none;
+
+transition:0.3s;
+
+}
+
+.btn:hover{
+
+transform:scale(1.1);
+
+box-shadow:0 0 20px white;
+
+}
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+
+transform:translateY(30px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+@keyframes glow{
+
+from{
+
+text-shadow:0 0 10px white, 0 0 20px white;
+
+}
+
+to{
+
+text-shadow:0 0 20px white, 0 0 40px white;
+
+}
+
+}
+
+.heart{
+
+position:absolute;
+
+font-size:20px;
+
+animation: float 6s linear infinite;
+
+}
+
+@keyframes float{
+
+0%{
+
+transform:translateY(100vh);
+
+opacity:0;
+
+}
+
+100%{
+
+transform:translateY(-10vh);
+
+opacity:1;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<h1>Ma Princesse</h1>
+
+<p>
+
+Ce site n’est pas un simple site.
+
+C’est une déclaration.
+
+Une création née de mon cœur et écrite avec mon âme.
+
+Parmi les milliards de personnes sur Terre,
+
+tu es celle qui a changé mon monde.
+
+Aujourd’hui, je t’invite à entrer
+
+dans l’endroit le plus précieux que j’ai jamais construit.
+
+Je veux innover dans mes déclarations d'amour et pour moi c'est 
+
+l'un des meilleurs moyens pour te montrer a quel point je tiens a toi
+
+J'espère pouvoir te captiver ma vie...
+</p>
+
+<a href="lettre.html" class="btn"  onclick="startMusic()">
+
+Entrer ❤️
+
+</a>
+
+</div>
+
+
+<script>
+
+function createHeart(){
+
+const heart = document.createElement("div");
+
+heart.classList.add("heart");
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.animationDuration=3+Math.random()*3+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+
+heart.remove();
+
+},6000);
+
+}
+
+setInterval(createHeart,300);
+
+</script>
+<script>
+
+function startMusic(){
+
+localStorage.setItem("playMusic","yes");
+
+}
+
+</script>
+
+
+</body>
+
+</html>
