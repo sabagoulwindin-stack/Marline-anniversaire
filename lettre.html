@@ -21,9 +21,10 @@ color:white;
 font-family:'Poppins', sans-serif;
 display:flex;
 justify-content:center;
-align-items:center;
-height:100vh;
-overflow:hidden;
+align-items:flex-start;
+min-height:100vh;
+overflow-y:auto;
+ padding-bottom: 50px;
 
 }
 
@@ -65,13 +66,15 @@ visibility:hidden;
 
 #content{
 
-max-width:800px;
-padding:40px;
+max-width:90%;
+padding:20px;
+margin-top: 50px;
 opacity:0;
 animation: appear 3s ease forwards;
 animation-delay:7s;
 line-height:1.8;
-font-size:20px;
+font-size:18px;
+text-align: center;
 
 }
 
@@ -288,4 +291,5 @@ document.addEventListener('touchstart', startMusic);
 
 
 </html>
+
 
