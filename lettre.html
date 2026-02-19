@@ -139,7 +139,7 @@ background:#ff2e6a;
 
 <div id="text"></div>
 
-<audio id="music" autoplay loop>
+<audio id="music" loop preload="auto">
 
 <source src="music1.mp3" type="audio/mpeg">
 
@@ -267,8 +267,22 @@ document.getElementById("music").play();
 }
 
 </script>
+function startMusic() {
+    const audio = document.getElementById('music');
+    audio.play().then(() => {
+        // Une fois que ça joue, on retire l'écouteur pour ne pas relancer à chaque clic
+        document.removeEventListener('click', startMusic);
+        document.removeEventListener('touchstart', startMusic);
+    }).catch(error => {
+        console.log("Lecture bloquée par le navigateur :", error);
+    });
+}
+
+document.addEventListener('click', startMusic);
+document.addEventListener('touchstart', startMusic);
 
 
 </body>
+
 
 </html>
